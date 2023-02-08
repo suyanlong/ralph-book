@@ -2,6 +2,64 @@
 
 The ralph Programming Language
 
+<!-- TOC -->
+* [ralph-book](#ralph-book)
+  * [简介](#简介)
+  * [项目结构](#项目结构)
+  * [基础语法](#基础语法)
+    * [命名规范](#命名规范)
+    * [缩进](#缩进)
+    * [关键字](#关键字)
+    * [作用域](#作用域)
+    * [语法关系](#语法关系)
+    * [注释](#注释)
+  * [变量](#变量)
+  * [数据类型](#数据类型)
+  * [字面量](#字面量)
+  * [运算符](#运算符)
+  * [语句](#语句)
+    * [判断语句/表达式](#判断语句表达式)
+    * [循环语句](#循环语句)
+      * [For loop](#for-loop)
+      * [While loop](#while-loop)
+    * [返回语句](#返回语句)
+    * [复合语句](#复合语句)
+  * [方法](#方法)
+    * [方法定义](#方法定义)
+    * [方法签名](#方法签名)
+    * [方法调用](#方法调用)
+    * [内置方法](#内置方法)
+  * [合约](#合约)
+    * [合约定义](#合约定义)
+    * [修饰符](#修饰符)
+    * [枚举](#枚举)
+    * [字段](#字段)
+    * [event](#event)
+    * [Contract Creation inside a Contract](#contract-creation-inside-a-contract)
+  * [接口](#接口)
+  * [继承](#继承)
+  * [脚本（执行入口）](#脚本执行入口)
+  * [注解](#注解)
+    * [方法注解](#方法注解)
+        * [Using Approved Assets](#using-approved-assets)
+        * [Using Contract Assets](#using-contract-assets)
+        * [External Call Check](#external-call-check)
+    * [字段或参数注解](#字段或参数注解)
+  * [类型转化](#类型转化)
+  * [Map](#map)
+  * [错误处理](#错误处理)
+  * [调试方法](#调试方法)
+  * [特殊用法](#特殊用法)
+  * [编译器](#编译器)
+  * [编译](#编译)
+  * [部署](#部署)
+  * [工具](#工具)
+  * [样例](#样例)
+  * [参考](#参考)
+  * [Q&A](#qa)
+<!-- TOC -->
+
+
 ## 简介
 
 Ralph 是 Alephium 区块链的智能合约编程语言，专注目标：安全、简单、效率。本教程提供编写清晰、惯用且安全的代码规范。
@@ -825,7 +883,7 @@ Contract Foo() {
 
 You can find more information about asset permission at [here](/ralph/asset-permission-system).
 
-- External Call Check
+##### External Call Check
 
 In smart contracts, we often need to check whether the caller of the contract function is authorized. To avoid bugs caused by unauthorized callers, the compiler will report warnings for public functions that do not check for external calls. The warning can be suppressed with annotation `@using(externalCallCheck = false)`.
 
