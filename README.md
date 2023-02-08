@@ -3,62 +3,60 @@
 The ralph Programming Language
 
 <!-- TOC -->
-* [ralph-book](#ralph-book)
-  * [简介](#简介)
-  * [项目结构](#项目结构)
-  * [基础语法](#基础语法)
-    * [命名规范](#命名规范)
-    * [缩进](#缩进)
-    * [关键字](#关键字)
-    * [作用域](#作用域)
-    * [语法关系](#语法关系)
-    * [注释](#注释)
-  * [变量](#变量)
-  * [数据类型](#数据类型)
-  * [字面量](#字面量)
-  * [运算符](#运算符)
-  * [语句](#语句)
-    * [判断语句/表达式](#判断语句表达式)
-    * [循环语句](#循环语句)
-      * [For loop](#for-loop)
-      * [While loop](#while-loop)
-    * [返回语句](#返回语句)
-    * [复合语句](#复合语句)
-  * [方法](#方法)
-    * [方法定义](#方法定义)
-    * [方法签名](#方法签名)
-    * [方法调用](#方法调用)
-    * [内置方法](#内置方法)
-  * [合约](#合约)
-    * [合约定义](#合约定义)
-    * [修饰符](#修饰符)
-    * [枚举](#枚举)
-    * [字段](#字段)
-    * [event](#event)
-    * [Contract Creation inside a Contract](#contract-creation-inside-a-contract)
-  * [接口](#接口)
-  * [继承](#继承)
-  * [脚本（执行入口）](#脚本执行入口)
-  * [注解](#注解)
-    * [方法注解](#方法注解)
-        * [Using Approved Assets](#using-approved-assets)
-        * [Using Contract Assets](#using-contract-assets)
-        * [External Call Check](#external-call-check)
-    * [字段或参数注解](#字段或参数注解)
-  * [类型转化](#类型转化)
-  * [Map](#map)
-  * [错误处理](#错误处理)
-  * [调试方法](#调试方法)
-  * [特殊用法](#特殊用法)
-  * [编译器](#编译器)
-  * [编译](#编译)
-  * [部署](#部署)
-  * [工具](#工具)
-  * [样例](#样例)
-  * [参考](#参考)
-  * [Q&A](#qa)
-<!-- TOC -->
 
+- [ralph-book](#ralph-book)
+  - [简介](#简介)
+  - [项目结构](#项目结构)
+  - [基础语法](#基础语法)
+    - [命名规范](#命名规范)
+    - [缩进](#缩进)
+    - [关键字](#关键字)
+    - [作用域](#作用域)
+    - [语法关系](#语法关系)
+    - [注释](#注释)
+  - [变量](#变量)
+  - [数据类型](#数据类型)
+  - [字面量](#字面量)
+  - [运算符](#运算符)
+  - [语句](#语句)
+    - [判断语句/表达式](#判断语句表达式)
+    - [循环语句](#循环语句)
+    - [返回语句](#返回语句)
+    - [复合语句](#复合语句)
+  - [方法](#方法)
+    - [方法定义](#方法定义)
+    - [方法签名](#方法签名)
+    - [方法调用](#方法调用)
+    - [内置方法](#内置方法)
+  - [合约](#合约)
+    - [合约定义](#合约定义)
+    - [修饰符](#修饰符)
+    - [枚举](#枚举)
+    - [字段](#字段)
+    - [event](#event)
+    - [Contract Creation inside a Contract](#contract-creation-inside-a-contract)
+  - [接口](#接口)
+  - [继承](#继承)
+  - [脚本（执行入口）](#脚本执行入口)
+  - [注解](#注解)
+    - [方法注解](#方法注解)
+        - [Using Approved Assets](#using-approved-assets)
+        - [Using Contract Assets](#using-contract-assets)
+        - [Check External Caller](#check-external-caller)
+        - [Using Update Fields](#using-update-fields)
+    - [字段或参数注解](#字段或参数注解)
+  - [类型转化](#类型转化)
+  - [Map](#map)
+  - [错误处理](#错误处理)
+  - [调试方法](#调试方法)
+  - [特殊用法](#特殊用法)
+  - [编译器](#编译器)
+  - [编译](#编译)
+  - [部署](#部署)
+  - [工具](#工具)
+  - [样例](#样例)
+  - [参考](#参考)
+  - [Q\&A](#qa)
 
 ## 简介
 
@@ -156,7 +154,7 @@ project3
 
 ### 缩进
 
-- 1 个 Tab = 4 个 Space
+- 1 个 Tab = 2 个 Space
 
 ### 关键字
 
@@ -286,7 +284,7 @@ Contrct foo(mut number: I256){
 
 ## 数据类型
 
-Ralph 是一种静态类型的语言，你不需要为局部变量和常量指定类型，编译器会自动进行类型推导。
+Ralph 是一种静态类型的语言，不需要为局部变量和常量指定类型，编译器会自动进行类型推导。
 Ralph 的类型都是值类型，因此，当被用作函数参数或赋值时，总是被复制。目前，Ralph 支持以下数据类型：
 
 - 基本类型
@@ -375,16 +373,16 @@ let a3 = [#00, #11, #22, #33]
 
 - 算术运算符
 
-| 类型     | 描述 | 实例 |
-| -------- | ---- | ---- |
-| +        |      |      |
-| -        |      |      |
-| \*       |      |      |
-| /        |      |      |
-| %        |      |      |
-| ⊕ or `+` |      |      |
-| ⊖ or `-` |      |      |
-| ⊗ or `*` |      |      |
+| 类型        | 描述 | 实例 |
+| ----------- | ---- | ---- |
+| +           |      |      |
+| -           |      |      |
+| \*          |      |      |
+| /           |      |      |
+| %           |      |      |
+| ⊕ or \`+\`  |      |      |
+| ⊖ or \`-\`  |      |      |
+| ⊗ or \`\*\` |      |      |
 
 - 关系运算符
 
@@ -458,7 +456,7 @@ fn foo() -> ByteVec {
 
 ### 循环语句
 
-#### For loop
+- For loop
 
 ```rust
 // For loop
@@ -469,7 +467,7 @@ fn foo() -> () {
 }
 ```
 
-#### While loop
+- While loop
 
 ```rust
 // While loop
@@ -511,8 +509,8 @@ fn foo() -> () {
 
 ```rust
 fn foo() -> U256 {
-...
-return 1
+  ...
+  return 1
 }
 ```
 
@@ -540,7 +538,7 @@ Functions are the executable units of code, you can also define functions inside
 
 ```
 [pub] fn name(...) -> (...){
-    ...
+  ...
 }
 ```
 
@@ -837,8 +835,8 @@ The `@using` annotation has four optional fields:
 
 - `preapprovedAssets = true/false`: whether the function uses user-approved assets. The default value is `false` for contracts, `true` for scripts.
 - `assetsInContract = true/false`: whether the function uses contract assets. The default value is `false` for contracts
-- `externalCallCheck = true/false`: whether the function checks the caller. The default value is `true` for contracts
-- TODO
+- `checkExternalCaller = true/false`: whether the function checks the caller. The default value is `true` for contracts
+- `updateFields = true/false`: whether the function changes state. The default value is `true` for contracts
 
 ##### Using Approved Assets
 
@@ -883,9 +881,9 @@ Contract Foo() {
 
 You can find more information about asset permission at [here](/ralph/asset-permission-system).
 
-##### External Call Check
+##### Check External Caller
 
-In smart contracts, we often need to check whether the caller of the contract function is authorized. To avoid bugs caused by unauthorized callers, the compiler will report warnings for public functions that do not check for external calls. The warning can be suppressed with annotation `@using(externalCallCheck = false)`.
+In smart contracts, we often need to check whether the caller of the contract function is authorized. To avoid bugs caused by unauthorized callers, the compiler will report warnings for public functions that do not check for external calls. The warning can be suppressed with annotation `@using(checkExternalCaller = false)`.
 
 To check the caller of a function, the built-in function [checkCaller!](/ralph/built-in-functions#checkcaller) has to be used.
 
@@ -895,8 +893,8 @@ Contract Foo(barId: ByteVec, mut b: Boolean) {
     InvalidCaller = 0
   }
 
-  // We don't need to add the `@using(externalCallCheck = true)` because
-  // the `externalCallCheck` is true by default for public functions.
+  // We don't need to add the `@using(checkExternalCaller = true)` because
+  // the `checkExternalCaller` is true by default for public functions.
   pub fn f0() -> () {
     // The `checkCaller!` built-in function is used to check if the caller is valid.
     checkCaller!(callerContractId!() == barId, ErrorCodes.InvalidCaller)
@@ -905,8 +903,8 @@ Contract Foo(barId: ByteVec, mut b: Boolean) {
   }
 
   // Function `f1` is readonly, so it does not need to check the caller.
-  // We need to explicitly add the `@using(externalCallCheck = false)` annotation.
-  @using(externalCallCheck = false, readonly = true)
+  // We need to explicitly add the `@using(checkExternalCaller = false)` annotation.
+  @using(checkExternalCaller = false)
   pub fn f1() -> () {
     // ...
   }
@@ -931,9 +929,39 @@ Contract Foo(barId: ByteVec, mut b: Boolean) {
 }
 ```
 
+##### Using Update Fields
+
+```rust
+Contract Foo(x: Bool) {
+  @using(updateFields = true)
+  pub fn foo(code: ByteVec, changeState: Bool) -> () {
+    if (changeState) {
+      migrateWithFields!(code, #010000)
+    } else {
+      migrate!(code)
+    }
+  }
+
+  pub fn checkX(expected: Bool) -> () {
+    assert!(x == expected, 0)
+  }
+}
+```
+
 ### 字段或参数注解
 
-TODO
+使用`@unused`方式标记, 字段或参数是否被使用。
+
+```rust
+Contract Foo(@unused mut x: Bool) {
+  @using(updateFields = true)
+  pub fn foo(@unused y: Bool, code: ByteVec, changeState: Bool) -> () {
+    if (changeState) {
+      migrateWithFields!(code, #010000)
+    }
+  }
+}
+```
 
 ## 类型转化
 
@@ -978,6 +1006,8 @@ TODO
 TODO
 
 ## 编译器
+
+[下载地址](https://github.com/alephium/alephium/releases)
 
 ```shell
 java -jar alephium-ralphc-1.6.4.jar  -h
