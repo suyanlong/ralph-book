@@ -69,6 +69,7 @@ Ralph 是 Alephium 区块链的智能合约编程语言，专注目标：安全�
 ```shell
 project1
 ├── artifacts
+│    ├── .project.json
 │    ├── add
 │    │    └── add.ral.json
 │    ├── greeter
@@ -94,6 +95,7 @@ project1
 project2
 ├── action.ral
 ├── artifacts
+│    ├── .project.json
 │    ├── action.ral.json
 │    ├── foo.ral.json
 │    ├── main.ral.json
@@ -107,10 +109,10 @@ project2
 - 多项目多层级结构
 
 ```shell
-
 project3
 ├── project1
 │    ├── artifacts
+│    │    ├── .project.json
 │    │    ├── add
 │    │    │    └── add.ral.json
 │    │    ├── greeter
@@ -130,6 +132,7 @@ project3
 └── project2
     ├── action.ral
     ├── artifacts
+    │    ├── .project.json
     │    ├── action.ral.json
     │    ├── foo.ral.json
     │    ├── main.ral.json
